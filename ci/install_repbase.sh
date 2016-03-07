@@ -97,7 +97,7 @@ conda env create -q --name $REP_ENV_NAME python=$PYTHON_MAJOR_VERSION --file $RE
 source activate $REP_ENV_NAME || halt "Error installing $REP_ENV_NAME environment"
 
 echo "Removing conda packages and caches"
-#conda uninstall --force --yes -q gcc qt
+conda uninstall --force --yes -q gcc qt libpng
 #conda clean --yes -s -p -l -i -t
 
 
