@@ -93,15 +93,16 @@ conda clean --yes -s -p -l -i -t
 
 
 echo "Creating conda venv $REP_ENV_NAME"
-conda env create -q --name $REP_ENV_NAME python=$PYTHON_MAJOR_VERSION --file $REP_ENV_FILE > /dev/null
+conda env create -q --name $REP_ENV_NAME python=$PYTHON_MAJOR_VERSION --file $REP_ENV_FILE
 source activate $REP_ENV_NAME || halt "Error installing $REP_ENV_NAME environment"
 
 echo "Removing conda packages and caches"
-conda uninstall --force --yes -q gcc qt
-conda clean --yes -s -p -l -i -t
+#conda uninstall --force --yes -q gcc qt
+#conda clean --yes -s -p -l -i -t
 
 
 # test installed packages
+conda list
 source "${ENV_BIN_DIR}/thisroot.sh" || halt "Error installing ROOT"
 python -c 'import ROOT, root_numpy' || halt "Error installing root_numpy"
 python -c 'import xgboost' || halt "Error installing XGBoost"
