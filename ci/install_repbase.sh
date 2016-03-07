@@ -97,8 +97,9 @@ conda env create -q --name $REP_ENV_NAME python=$PYTHON_MAJOR_VERSION --file $RE
 source activate $REP_ENV_NAME || halt "Error installing $REP_ENV_NAME environment"
 
 echo "Removing conda packages and caches"
-conda uninstall --force -q sqlite libpng libx11 jpeg libtiff # these were used in official repository
-conda uninstall --force -q gcc qt
+# these were used in official nlesc/root. I've detected sqlite and libpng to conflict with ROOT.
+conda uninstall --force --yes -q sqlite libpng libx11 jpeg libtiff
+conda uninstall --force --yes -q gcc qt
 #conda clean --yes -s -p -l -i -t
 
 
