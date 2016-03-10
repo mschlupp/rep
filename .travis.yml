@@ -31,7 +31,7 @@ before_install:
   - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
       brew install homebrew/science/root;
       source $(brew --prefix root)/libexec/thisroot.sh;
-      which pip
+      which pip;
     else
       source ci/install_repbase.sh;
       conda list;
