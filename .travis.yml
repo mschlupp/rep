@@ -24,8 +24,18 @@ matrix:
           env: TRAVIS_PYTHON_VERSION=3.5
         - os: osx
           env: TRAVIS_PYTHON_VERSION=2.7
+          before install:
+            - brew install homebrew/science/root
+            - source $(brew --prefix root)/libexec/thisroot.sh
+            - which pip
+            - which python
         - os: osx
           env: TRAVIS_PYTHON_VERSION=3.5
+          before install:
+            - brew install homebrew/science/root
+            - source $(brew --prefix root)/libexec/thisroot.sh
+            - which pip
+            - which python
 
 before_install:
   - source ci/install_repbase.sh
