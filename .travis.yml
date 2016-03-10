@@ -5,43 +5,39 @@ matrix:
     include:
         - os: linux
           env: TRAVIS_PYTHON_VERSION=2.7
-          script:
-            # listing everything in howto folder recursively
-            - ls -alR ./howto/
-            # setting flag: don't proceed if one of commands fails.
-            - set -e
-            # creating folder for tests (travis doesn't allow this).
-            - mkdir -p ./.cache/rep
-            # testing all but notebooks
-            - nosetests -v --detailed-errors --nocapture ./tests/test_*
-            # testing only notebooks
-            - nosetests -v --detailed-errors --nocapture --stop ./tests/z_test_*
-            # if on master and tests passed successfully, trigger rebuilding of docker image.
-            - if [[ "$TRAVIS_BRANCH" = "master" && "${TRAVIS_PYTHON_VERSION:0:1}" = "2" ]] ; then make push-latest ; fi
-            # reseting flag
-            - set +e
-        - os: linux
-          env: TRAVIS_PYTHON_VERSION=3.5
+#          script:
+#            # listing everything in howto folder recursively
+#            - ls -alR ./howto/
+#            # setting flag: don't proceed if one of commands fails.
+#            - set -e
+#            # creating folder for tests (travis doesn't allow this).
+#            - mkdir -p ./.cache/rep
+#            # testing all but notebooks
+#            - nosetests -v --detailed-errors --nocapture ./tests/test_*
+#            # testing only notebooks
+#            - nosetests -v --detailed-errors --nocapture --stop ./tests/z_test_*
+#            # if on master and tests passed successfully, trigger rebuilding of docker image.
+#            - if [[ "$TRAVIS_BRANCH" = "master" && "${TRAVIS_PYTHON_VERSION:0:1}" = "2" ]] ; then make push-latest ; fi
+#            # reseting flag
+#            - set +e
+#        - os: linux
+#          env: TRAVIS_PYTHON_VERSION=3.5
         - os: osx
           env: TRAVIS_PYTHON_VERSION=2.7
-          before install:
-            - brew install homebrew/science/root
-            - source $(brew --prefix root)/libexec/thisroot.sh
-            - which pip
-            - which python
-        - os: osx
-          env: TRAVIS_PYTHON_VERSION=3.5
-          before install:
-            - brew install homebrew/science/root
-            - source $(brew --prefix root)/libexec/thisroot.sh
-            - which pip
-            - which python
+#        - os: osx
+#          env: TRAVIS_PYTHON_VERSION=3.5
 
 before_install:
-  - source ci/install_repbase.sh
+  - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+      brew install homebrew/science/root;
+      source $(brew --prefix root)/libexec/thisroot.sh;
+      which pip
+    else
+      source ci/install_repbase.sh;
+      conda list;
+    fi
   # printing DEBUG information
   - which python
-  - conda list
   - echo $LD_LIBRARY_PATH
 install:
   - pip install .
