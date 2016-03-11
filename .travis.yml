@@ -1,10 +1,11 @@
 # Travis (https://travis-ci.org) configuration file
 
-language: generic
+language: python
 matrix:
     include:
         - os: linux
-          env: TRAVIS_PYTHON_VERSION=2.7
+          python: 2.7
+#          env: TRAVIS_PYTHON_VERSION=2.7
 #          script:
 #            # listing everything in howto folder recursively
 #            - ls -alR ./howto/
@@ -23,7 +24,9 @@ matrix:
 #        - os: linux
 #          env: TRAVIS_PYTHON_VERSION=3.5
         - os: osx
-          env: TRAVIS_PYTHON_VERSION=2.7
+
+          python: 2.7
+#          env: TRAVIS_PYTHON_VERSION=2.7
 #        - os: osx
 #          env: TRAVIS_PYTHON_VERSION=3.5
 
