@@ -49,7 +49,7 @@ before_install:
       source $(brew --prefix root)/libexec/thisroot.sh;
       which root;
       which root;
-      cat 'TRY IMPORT ROOT';
+      cat 'TRY IMPORT ROOT again';
       python -c "import ROOT";
 
       # to install libraries by its order, otherwise scikit-learn will be installed at first and failled.
