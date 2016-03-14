@@ -26,17 +26,22 @@ matrix:
 #        - os: linux
 #          env: TRAVIS_PYTHON_VERSION=3.5
         - os: osx
-          python: 2.7
+          language: generic
 #          env: TRAVIS_PYTHON_VERSION=2.7
 #        - os: osx
 #          env: TRAVIS_PYTHON_VERSION=3.5
 
 before_install:
   - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+      brew update;
       brew install python;
       brew install homebrew/science/root;
+      virtualenv venv -p python2.7;
+      source venv/bin/activate
       source $(brew --prefix root)/libexec/thisroot.sh;
       which pip;
+      pip install -r requirements.txt;
+      pip install root_numpy rootpy;
     else
       source ci/install_repbase.sh;
       conda list;
