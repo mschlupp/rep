@@ -1,11 +1,12 @@
 # Travis (https://travis-ci.org) configuration file
 
 language: python
-sudo: required
 matrix:
     include:
         - os: linux
           python: 2.7
+          sudo: required
+
 #          env: TRAVIS_PYTHON_VERSION=2.7
 #          script:
 #            # listing everything in howto folder recursively
@@ -32,6 +33,7 @@ matrix:
 
 before_install:
   - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+      brew install python;
       brew install homebrew/science/root;
       source $(brew --prefix root)/libexec/thisroot.sh;
       which pip;
