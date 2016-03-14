@@ -40,6 +40,8 @@ before_install:
 
       which root;
       which root;
+      cat 'TRY IMPORT ROOT';
+      python -c "import ROOT";
 
       virtualenv venv -p python2.7;
       source venv/bin/activate
@@ -47,6 +49,7 @@ before_install:
       source $(brew --prefix root)/libexec/thisroot.sh;
       which root;
       which root;
+      cat 'TRY IMPORT ROOT';
       python -c "import ROOT";
 
       # to install libraries by its order, otherwise scikit-learn will be installed at first and failled.
