@@ -35,11 +35,21 @@ before_install:
   - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
       brew update;
       brew install python;
+
       brew install homebrew/science/root;
+
+      which root;
+      which root;
+
       virtualenv venv -p python2.7;
       source venv/bin/activate
+
       source $(brew --prefix root)/libexec/thisroot.sh;
       which root;
+      which root;
+      python -c "import ROOT";
+
+      # to install libraries by its order, otherwise scikit-learn will be installed at first and failled.
       pip install pip -U;
       pip install -r requirements.txt;
       pip install rootpy root_numpy;
