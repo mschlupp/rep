@@ -1,0 +1,32 @@
+environment:
+
+  matrix:
+    - MINICONDA: "C:\\Miniconda-x64"
+      PYTHON_VERSION: 2.7
+
+    #- MINICONDA: "C:\\Miniconda3-x64"
+    #  PYTHON_VERSION: 3.4
+
+build: false
+install:
+  - "SET PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%;"
+
+  - conda config --set always_yes true
+  - conda update -q conda
+  - "conda create -q -n test-environment python=%PYTHON_VERSION%"
+  - activate test-environment
+  - conda install -q mingw libpython
+  - conda install -q pip
+  - conda install -q --file requirements.txt
+  # installing self
+  - pip install . --no-dependencies
+  - $source = "https://root.cern.ch/download/root_v5.34.32.win32.vc12.zip"
+  - $destination = "root.zip"
+  - Invoke-WebRequest $source -OutFile $destination
+  - 7z e $destination
+  - dir
+  - ./root/bin/thisroot.bat
+  - pip install rootpy root_numpy
+
+test_script:
+  - nosetests tests
