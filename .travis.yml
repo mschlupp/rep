@@ -55,7 +55,8 @@ before_install:
       # to install libraries by its order, otherwise scikit-learn will be installed at first and failled.
       pip install pip -U;
       pip install -r requirements.txt;
-      pip install rootpy root_numpy;
+      pip install rootpy
+      pip install root_numpy;
     else
       source ci/install_repbase.sh;
       conda list;
