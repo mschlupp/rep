@@ -23,10 +23,10 @@ install:
   - 7z x root.zip
   - dir
   - ./root/bin/thisroot.bat
-  - ./root/bin/thisroot.sh
-  - pip install rootpy root_numpy
+  - root -h
   - pip install . --no-dependencies
   - conda install xgboost
+  - pip install rootpy root_numpy
 
 test_script:
   - nosetests tests/*
