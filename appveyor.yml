@@ -25,7 +25,8 @@ install:
   - ./root/bin/thisroot.bat
   - set PATH=%ROOTSYS%/bin;%PATH%
   - set PYTHONPATH=%ROOTSYS%/bin;%PYTHONPATH%
-  - python -c 'print "hello world"'
+  - type PATH
+  - type PYTHONPATH
   - python -c 'import ROOT'
   #- root -h
   - pip install . --no-dependencies
