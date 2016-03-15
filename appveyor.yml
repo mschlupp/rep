@@ -1,10 +1,10 @@
 environment:
 
   matrix:
-    - MINICONDA: "C:\\Miniconda-x64"
+    - MINICONDA: "C:\\Miniconda"
       PYTHON_VERSION: 2.7
 
-    #- MINICONDA: "C:\\Miniconda3-x64"
+    #- MINICONDA: "C:\\Miniconda3"
     #  PYTHON_VERSION: 3.4
 
 build: false
