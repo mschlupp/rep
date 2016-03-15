@@ -1,6 +1,8 @@
 environment:
 
   matrix:
+  # for win64 ROOT doensn't work: the same error as in the
+  # http://stackoverflow.com/questions/14629818/importerror-dll-load-failed-1-is-not-a-valid-win32-application
     - MINICONDA: "C:\\Miniconda"
       PYTHON_VERSION: 2.7
 
@@ -19,15 +21,19 @@ install:
   - conda install -q pip
   - conda install -q ipython-notebook=4.0.4 matplotlib=1.5.1 numpy=1.10.4 pandas=0.17.1 scikit-learn=0.17.1 scipy=0.17.0 six=1.10.0
   - pip install bokeh==0.11.1 neurolab==0.3.5 theano==0.7.0 theanets==0.6.2 pybrain==0.3 mpld3==0.2 hep_ml==0.4
+  # ROOT installation
   - appveyor DownloadFile https://root.cern.ch/download/root_v5.34.32.win32.vc12.zip -FileName root.zip
   - 7z x root.zip
   - dir
   - ./root/bin/thisroot.bat
   - set PYTHONPATH=%ROOTSYS%\bin;%PYTHONPATH%
+  # Check that PyROOT works
   - python -c "import ROOT"
+  -   RuntimeError: ROOTSYS is C:\projects\rep\root but running C:\projects\rep\root\bin\root-config failed
+
   - pip install . --no-dependencies
-  - pip install rootpy==0.8.0
-  - pip install root_numpy
+  - pip install rootpy
+  # - pip install root_numpy
   - pip install xgboost==0.4a30
 
 test_script:
