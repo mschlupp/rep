@@ -1,48 +1,38 @@
-# Travis (https://travis-ci.org) configuration file
-
 language: python
 matrix:
     include:
-        #- os: linux
-        #  python: 2.7
-        #  sudo: required
+        - os: linux
+          python: 2.7
+          sudo: required
 
-#          env: TRAVIS_PYTHON_VERSION=2.7
-#          script:
-#            # listing everything in howto folder recursively
-#            - ls -alR ./howto/
-#            # setting flag: don't proceed if one of commands fails.
-#            - set -e
-#            # creating folder for tests (travis doesn't allow this).
-#            - mkdir -p ./.cache/rep
-#            # testing all but notebooks
-#            - nosetests -v --detailed-errors --nocapture ./tests/test_*
-#            # testing only notebooks
-#            - nosetests -v --detailed-errors --nocapture --stop ./tests/z_test_*
-#            # if on master and tests passed successfully, trigger rebuilding of docker image.
-#            - if [[ "$TRAVIS_BRANCH" = "master" && "${TRAVIS_PYTHON_VERSION:0:1}" = "2" ]] ; then make push-latest ; fi
-#            # reseting flag
-#            - set +e
-#        - os: linux
-#          env: TRAVIS_PYTHON_VERSION=3.5
         - os: osx
           language: generic
-#          env: TRAVIS_PYTHON_VERSION=2.7
-#        - os: osx
-#          env: TRAVIS_PYTHON_VERSION=3.5
-
 before_install:
   - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
       brew update;
       brew install python;
+
       brew install homebrew/science/root;
+
+      which root;
+      which root;
+      cat 'TRY IMPORT ROOT';
+      python -c "import ROOT";
+
       virtualenv venv -p python2.7;
       source venv/bin/activate
+
       source $(brew --prefix root)/libexec/thisroot.sh;
-      which pip;
+      which root;
+      which root;
+      cat 'TRY IMPORT ROOT again';
+      python -c "import ROOT";
+
+      # to install libraries by its order, otherwise scikit-learn will be installed at first and failled.
       pip install pip -U;
       pip install -r requirements.txt;
-      pip install root_numpy rootpy;
+      pip install rootpy
+      pip install root_numpy;
     else
       source ci/install_repbase.sh;
       conda list;
@@ -53,10 +43,15 @@ before_install:
 install:
   - pip install .
 script:
-  # creating folder for tests (travis doesn't allow this).
+  # listing everything in howto folder recursively
+  - ls -alR ./howto/
+  # setting flag: don't proceed if one of commands fails.
+  - set -e
   - mkdir -p ./.cache/rep
   # testing all but notebooks
   - nosetests -v --detailed-errors --nocapture ./tests/test_*
+  # reseting flag
+  - set +e
 notifications:
   email: true
   webhooks:
