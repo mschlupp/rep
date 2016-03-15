@@ -23,8 +23,7 @@ install:
   - 7z x root.zip
   - dir
   - ./root/bin/thisroot.bat
-  - set PATH=%ROOTSYS%/bin;%PATH%
-  - set PYTHONPATH=%ROOTSYS%/bin;%PYTHONPATH%
+  - set PYTHONPATH=%ROOTSYS%\bin;%PYTHONPATH%
   - echo %PATH%
   - echo %PYTHONPATH%
   - python -c "import ROOT"

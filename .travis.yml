@@ -3,9 +3,9 @@
 language: python
 matrix:
     include:
-        #- os: linux
-        #  python: 2.7
-        #  sudo: required
+        - os: linux
+          python: 2.7
+          sudo: required
 
 #          env: TRAVIS_PYTHON_VERSION=2.7
 #          script:
