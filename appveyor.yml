@@ -23,9 +23,11 @@ install:
   - 7z x root.zip
   - dir
   - ./root/bin/thisroot.bat
-  - root -h
+  - set PATH=%ROOTSYS%/bin;%PATH%
+  - set PYTHONPATH=%ROOTSYS%/bin;%PYTHONPATH%
+  #- root -h
   - pip install . --no-dependencies
-  - conda install xgboost
+  #- pip install xgboost==0.4a30
   - pip install rootpy root_numpy
 
 test_script:
