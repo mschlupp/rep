@@ -17,19 +17,22 @@ install:
   - activate test-environment
   - conda install -q mingw libpython
   - conda install -q pip
-  - conda install -q ipython-notebook=4.0.4 matplotlib=1.5.1 numpy=1.10.4 pandas=0.17.1 scikit-learn=0.17.1 scipy=0.17.0 six=1.10.0
-  - pip install bokeh==0.11.1 neurolab==0.3.5 theano==0.7.0 theanets==0.6.2 pybrain==0.3 mpld3==0.2 hep_ml==0.4
+  #- conda install -q ipython-notebook=4.0.4 matplotlib=1.5.1 numpy=1.10.4 pandas=0.17.1 scikit-learn=0.17.1 scipy=0.17.0 six=1.10.0
+  #- pip install bokeh==0.11.1 neurolab==0.3.5 theano==0.7.0 theanets==0.6.2 pybrain==0.3 mpld3==0.2 hep_ml==0.4
   - appveyor DownloadFile https://root.cern.ch/download/root_v5.34.32.win32.vc12.zip -FileName root.zip
   - 7z x root.zip
   - dir
   - ./root/bin/thisroot.bat
   - set PATH=%ROOTSYS%/bin;%PATH%
   - set PYTHONPATH=%ROOTSYS%/bin;%PYTHONPATH%
-  - python -c 'import ROOT'
+  - echo %PATH%
+  - echo %PYTHONPATH%
+  - python -c "import ROOT"
   #- root -h
   - pip install . --no-dependencies
   #- pip install xgboost==0.4a30
-  - pip install rootpy root_numpy
+  - pip install rootpy==0.8.0
+  - pip install root_numpy
 
 test_script:
   - nosetests tests/*
