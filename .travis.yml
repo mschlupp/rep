@@ -46,15 +46,15 @@ before_install:
       python -c "import ROOT";
       source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
       python -c "import ROOT";
-      #virtualenv venv -p python2.7;
-      #source venv/bin/activate;
-      #source $(brew --prefix root)/libexec/thisroot.sh;
-      #which root;
-      #cat 'TRY IMPORT ROOT again';
-      #python -c "import ROOT";
-      #pip install pip -U;
-      #pip install -r requirements.txt;
-      #pip install rootpy root_numpy;
+      virtualenv venv -p python2.7;
+      source venv/bin/activate;
+      source $(brew --prefix root)/libexec/thisroot.sh;
+      which root;
+      cat 'TRY IMPORT ROOT again';
+      python -c "import ROOT";
+      pip install pip -U;
+      pip install -r requirements.txt;
+      pip install rootpy root_numpy;
     else
       source ci/install_repbase.sh;
       conda list;
