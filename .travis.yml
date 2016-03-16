@@ -38,13 +38,14 @@ before_install:
       brew install homebrew/science/root;
       virtualenv venv -p python2.7;
       source venv/bin/activate;
-      echo 'backend:TkAgg' > $HOME/.matplotlib/matplotlibrc;
       source $(brew --prefix root)/libexec/thisroot.sh;
       source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
-      python -c "import ROOT; print 'works'";
       pip install pip -U;
       pip install -r requirements.txt;
       pip install rootpy root_numpy;
+      echo 'backend:TkAgg' > $HOME/.matplotlib/matplotlibrc;
+      ls $HOME/.matplotlib
+      echo $HOME/.matplotlib/matplotlibrc;
     else
       source ci/install_repbase.sh;
       conda list;
