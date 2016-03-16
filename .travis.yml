@@ -40,12 +40,12 @@ before_install:
       brew install homebrew/science/root;
       source $(brew --prefix root)/libexec/thisroot.sh;
       source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
+      python -c 'import ROOT';
       pip install pip -U;
       pip install -r requirements.txt;
       pip install rootpy root_numpy;
       mkdir -p $HOME/.matplotlib;
       echo 'backend:TkAgg' > $HOME/.matplotlib/matplotlibrc;
-      ls -lah $HOME/.matplotlib
     else
       source ci/install_repbase.sh;
       conda list;
