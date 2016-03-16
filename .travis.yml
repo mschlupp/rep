@@ -39,6 +39,7 @@ before_install:
       virtualenv venv -p python2.7;
       source venv/bin/activate;
       mkdir -p $HOME/.config/matplotlib;
+      echo 'dd';
       source $(brew --prefix root)/libexec/thisroot.sh;
       source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
       cat 'TRY IMPORT ROOT again';
