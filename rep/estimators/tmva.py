@@ -67,7 +67,7 @@ class TMVABase(object):
     __metaclass__ = ABCMeta
 
     def __init__(self,
-                 factory_options="Silent=True",
+                 factory_options="Silent=True:Verbose=False",
                  method='kBDT',
                  **method_parameters):
         self.method = method
@@ -275,7 +275,7 @@ class TMVAClassifier(TMVABase, Classifier):
     def __init__(self,
                  method='kBDT',
                  features=None,
-                 factory_options="Silent=True",
+                 factory_options="Silent=True:Verbose=False",
                  sigmoid_function='bdt',
                  **method_parameters):
         TMVABase.__init__(self, factory_options=factory_options, method=method, **method_parameters)
@@ -379,7 +379,7 @@ class TMVARegressor(TMVABase, Regressor):
     def __init__(self,
                  method='kBDT',
                  features=None,
-                 factory_options="Silent=True",
+                 factory_options="Silent=True:Verbose=False",
                  **method_parameters):
         TMVABase.__init__(self, factory_options=factory_options, method=method, **method_parameters)
         Regressor.__init__(self, features=features)
