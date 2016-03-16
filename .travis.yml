@@ -26,23 +26,23 @@ matrix:
 #        - os: linux
 #          env: TRAVIS_PYTHON_VERSION=3.5
         - os: osx
-          language: generic
-#          env: TRAVIS_PYTHON_VERSION=2.7
-#        - os: osx
-#          env: TRAVIS_PYTHON_VERSION=3.5
+          env: TRAVIS_PYTHON_VERSION=2.7
+        - os: osx
+          env: TRAVIS_PYTHON_VERSION=3.5
 
 before_install:
   - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
       brew update;
-      brew install python;
+      brew install python python3;
       brew install homebrew/science/root;
-      virtualenv venv -p python2.7;
+      virtualenv venv -p python$TRAVIS_PYTHON_VERSION;
       source venv/bin/activate;
       source $(brew --prefix root)/libexec/thisroot.sh;
       source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
       pip install pip -U;
       pip install -r requirements.txt;
       pip install rootpy root_numpy;
+      mkdir -p $HOME/.matplotlib
       echo 'backend:TkAgg' > $HOME/.matplotlib/matplotlibrc;
       ls $HOME/.matplotlib
       echo $HOME/.matplotlib/matplotlibrc;
