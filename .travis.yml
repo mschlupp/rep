@@ -38,11 +38,11 @@ before_install:
       brew install homebrew/science/root;
       virtualenv venv -p python2.7;
       source venv/bin/activate;
-      mkdir -p $HOME/.config/matplotlib;
-      echo 'backend:TkAgg' > $HOME/.config/matplotlib/matplotlibrc;
+      # matplotlib settings
+      echo 'backend:TkAgg' > $HOME/.matplotlib/matplotlibrc;
+      # ROOT settings
       source $(brew --prefix root)/libexec/thisroot.sh;
       source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
-      cat 'TRY IMPORT ROOT again';
       python -c "import ROOT; print 'works'";
       pip install pip -U;
       pip install -r requirements.txt;
@@ -55,7 +55,7 @@ before_install:
   - which python
   - echo $LD_LIBRARY_PATH
 install:
-  - pip install .
+  - pip install . --no-dependencies
 script:
   # creating folder for tests (travis doesn't allow this).
   - mkdir -p ./.cache/rep
