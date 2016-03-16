@@ -36,22 +36,13 @@ before_install:
       brew update;
       brew install python;
       brew install homebrew/science/root;
-      source $(brew --prefix root)/libexec/thisroot.sh;
-      which root;
-      which root;
-      root -h;
-      cat 'TRY IMPORT ROOT';
-      cat $PATH;
-      cat $PYTHONPATH;
-      python -c "import ROOT";
-      source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
-      python -c "import ROOT";
       virtualenv venv -p python2.7;
+      mkdir -p $HOME/.config/matplotlib && echo 'backend: TkAgg' > $HOME/.config/matplotlib/matplotlibrc
       source venv/bin/activate;
       source $(brew --prefix root)/libexec/thisroot.sh;
-      which root;
+      source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
       cat 'TRY IMPORT ROOT again';
-      python -c "import ROOT";
+      python -c "import ROOT; print 'works'";
       pip install pip -U;
       pip install -r requirements.txt;
       pip install rootpy root_numpy;
