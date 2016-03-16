@@ -1,14 +1,12 @@
 environment:
-
   matrix:
   # for win64 ROOT doensn't work: the same error as in the
   # http://stackoverflow.com/questions/14629818/importerror-dll-load-failed-1-is-not-a-valid-win32-application
-    - MINICONDA: "C:\\Miniconda"
-      PYTHON_VERSION: 2.7
+    #- MINICONDA: "C:\\Miniconda"
+    #  PYTHON_VERSION: 2.7
 
     #- MINICONDA: "C:\\Miniconda3"
     #  PYTHON_VERSION: 3.4
-
 build: false
 install:
   - "SET PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%;"

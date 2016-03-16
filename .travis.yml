@@ -36,12 +36,14 @@ before_install:
       brew update;
       brew install python;
       brew install homebrew/science/root;
+      source $(brew --prefix root)/libexec/thisroot.sh;
       which root;
       which root;
+      root -h;
       cat 'TRY IMPORT ROOT';
       python -c "import ROOT";
       virtualenv venv -p python2.7;
-      source venv/bin/activate
+      source venv/bin/activate;
       source $(brew --prefix root)/libexec/thisroot.sh;
       which root;
       cat 'TRY IMPORT ROOT again';
