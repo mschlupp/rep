@@ -55,7 +55,7 @@ before_install:
   - which python
   - echo $LD_LIBRARY_PATH
 install:
-  - pip install . --no-dependencies
+  - pip install .
 script:
   # creating folder for tests (travis doesn't allow this).
   - mkdir -p ./.cache/rep
