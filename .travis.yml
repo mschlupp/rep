@@ -39,7 +39,7 @@ before_install:
       virtualenv venv -p python2.7;
       source venv/bin/activate;
       mkdir -p $HOME/.config/matplotlib;
-      echo 'backend:TkAgg';
+      echo 'backend:TkAgg' > $HOME/.config/matplotlib/matplotlibrc;
       source $(brew --prefix root)/libexec/thisroot.sh;
       source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
       cat 'TRY IMPORT ROOT again';
