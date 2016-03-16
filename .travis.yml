@@ -44,7 +44,7 @@ before_install:
       cat $PATH;
       cat $PYTHONPATH;
       python -c "import ROOT";
-      source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH
+      source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
       python -c "import ROOT";
       #virtualenv venv -p python2.7;
       #source venv/bin/activate;
