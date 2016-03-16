@@ -38,7 +38,7 @@ before_install:
       brew install homebrew/science/root;
       virtualenv venv -p python2.7;
       source venv/bin/activate;
-      mkdir -p $HOME/.config/matplotlib && echo 'backend: TkAgg' > $HOME/.config/matplotlib/matplotlibrc;
+      mkdir -p $HOME/.config/matplotlib;
       source $(brew --prefix root)/libexec/thisroot.sh;
       source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
       cat 'TRY IMPORT ROOT again';
