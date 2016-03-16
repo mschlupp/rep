@@ -95,7 +95,7 @@ def test_theanets_partial_fit():
     assert auc_complete == auc_partial, 'same networks return different results'
 
 
-@known_failure
+# @known_failure
 def test_theanets_reproducibility():
     clf = TheanetsClassifier(trainers=[{'algo': 'nag', 'min_improvement': 0.1}])
     X, y, _ = generate_classification_data()
