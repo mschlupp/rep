@@ -26,9 +26,9 @@ matrix:
 #        - os: linux
 #          env: TRAVIS_PYTHON_VERSION=3.5
         - os: osx
-          env: TRAVIS_PYTHON_VERSION=2.7
+          env: PYTHON_VERSION=2.7
         - os: osx
-          env: TRAVIS_PYTHON_VERSION=3.5
+          env: PYTHON_VERSION=3.5
 
 before_install:
   - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
