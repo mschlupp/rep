@@ -35,12 +35,15 @@ before_install:
   - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
       brew update > /dev/null;
       if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then brew install python; else brew install python3; fi;
+      brew install homebrew/science/root;
+      PYTHON_PATH = $(which python);
       virtualenv venv -p python$TRAVIS_PYTHON_VERSION;
       source venv/bin/activate;
-      brew install homebrew/science/root;
       source $(brew --prefix root)/libexec/thisroot.sh;
       source PYTHONPATH=$ROOTSYS/bin;$PYTHONPATH;
       otool -L $(brew --prefix root)/lib/root/libPyROOT.so;
+      ls -lah /usr/local/Cellar/python3/;
+      install_name_tool -change /usr/local/opt/python/Frameworks/Python.framework/Versions/2.7/Python /usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/Python $(brew --prefix root)/lib/root/libPyROOT.so;
       python -c 'import ROOT';
       pip install pip -U;
       pip install -r requirements.txt;
