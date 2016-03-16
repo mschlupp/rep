@@ -43,7 +43,8 @@ before_install:
       pip install pip -U;
       pip install -r requirements.txt;
       pip install rootpy root_numpy;
-      mkdir -p $HOME/.matplotlib
+      ls $HOME;
+      mkdir -p $HOME/.matplotlib;
       echo 'backend:TkAgg' > $HOME/.matplotlib/matplotlibrc;
       ls $HOME/.matplotlib
       echo $HOME/.matplotlib/matplotlibrc;
