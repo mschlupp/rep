@@ -39,7 +39,7 @@ before_install:
       virtualenv venv -p python$TRAVIS_PYTHON_VERSION;
       source venv/bin/activate;
       source $(brew --prefix root)/libexec/thisroot.sh;
-      PYTHONPATH="$ROOTSYS/bin;$PYTHONPATH;"
+      source PYTHONPATH="$ROOTSYS/bin;$PYTHONPATH;"
       if [[ $TRAVIS_PYTHON_VERSION == '3.5' ]]; then ls -lah /usr/local/Cellar/python3/; sudo install_name_tool -change /usr/local/opt/python/Frameworks/Python.framework/Versions/2.7/Python /usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/Python $(brew --prefix root)/lib/root/libPyROOT.so; fi;
       otool -L $(brew --prefix root)/lib/root/libPyROOT.so;
       python -c 'import ROOT';
