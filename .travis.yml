@@ -24,9 +24,9 @@ matrix:
 #            - set +e
 #        - os: linux
 #          env: TRAVIS_PYTHON_VERSION=3.5
-        - os: osx
-          env: TRAVIS_PYTHON_VERSION=2.7
-          language: generic
+   #     - os: osx
+   #       env: TRAVIS_PYTHON_VERSION=2.7
+   #       language: generic
         - os: osx
           env: TRAVIS_PYTHON_VERSION=3.5
           language: generic
@@ -38,8 +38,10 @@ before_install:
       brew install homebrew/science/root;
       virtualenv venv -p python$TRAVIS_PYTHON_VERSION;
       source venv/bin/activate;
-      if [[ $TRAVIS_PYTHON_VERSION == '3.5' ]]; then ls -lah /usr/local/Cellar/python3/; sudo install_name_tool -change /usr/local/opt/python/Frameworks/Python.framework/Versions/2.7/Python /usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/Python /usr/local/Cellar/root/5.34.34_1/lib/root/libPyROOT.so; fi;
+      pip3 install numpy;
+      if [[ $TRAVIS_PYTHON_VERSION == '3.5' ]]; then root-config --python-version; sudo install_name_tool -change /usr/local/opt/python/Frameworks/Python.framework/Versions/2.7/Python /usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/Python /usr/local/Cellar/root/5.34.34_1/lib/root/libPyROOT.so; fi;
       otool -L /usr/local/Cellar/root/5.34.34_1/lib/root/libPyROOT.so;
+      root-config --python-version;
       source $(brew --prefix root)/libexec/thisroot.sh;
       python -c 'import ROOT';
       pip install pip -U;
