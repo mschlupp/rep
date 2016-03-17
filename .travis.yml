@@ -24,9 +24,9 @@ matrix:
 #            - set +e
 #        - os: linux
 #          env: TRAVIS_PYTHON_VERSION=3.5
-#        - os: osx
-#          env: TRAVIS_PYTHON_VERSION=2.7
-#          language: generic
+        - os: osx
+          env: TRAVIS_PYTHON_VERSION=2.7
+          language: generic
         - os: osx
           env: TRAVIS_PYTHON_VERSION=3.5
           language: generic
