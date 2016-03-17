@@ -35,13 +35,14 @@ before_install:
   - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
       brew update > /dev/null;
       if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then brew install python; else brew install python python3; fi;
-      brew install homebrew/science/root --with-python3;
+      wget https://root.cern.ch/download/root_v5.34.32.macosx64-10.10-clang61.tar.gz;
+      gunzip -c root_v5.34.32.macosx64-10.10-clang61.tar.gz | tar xopf -;
       virtualenv venv -p python$TRAVIS_PYTHON_VERSION;
       source venv/bin/activate;
-      if [[ $TRAVIS_PYTHON_VERSION == '3.5' ]]; then root-config --python-version; sudo install_name_tool -change /usr/local/opt/python/Frameworks/Python.framework/Versions/2.7/Python /usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/Python /usr/local/Cellar/root/5.34.34_1/lib/root/libPyROOT.so; fi;
-      otool -L /usr/local/Cellar/root/5.34.34_1/lib/root/libPyROOT.so;
-      root-config --python-version;
-      source $(brew --prefix root)/libexec/thisroot.sh;
+      otool -L root/lib/libPyROOT.so;
+      if [[ $TRAVIS_PYTHON_VERSION == '3.5' ]]; then root-config --python-version; sudo install_name_tool -change /System/Library/Frameworks/Python.framework/Versions/2.7/Python /usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/Python root/lib/libPyROOT.so; fi;
+      otool -L root/lib/libPyROOT.so;
+      source root/bin/thisroot.sh;
       python -c 'import ROOT';
       pip install pip -U;
       pip install -r requirements.txt;
